@@ -346,13 +346,9 @@ public class ExceptionAdvice {
         Map map = new HashMap();
         map.put("code", ExceptionEnums.ILLEGALARGUMENTEXCEPTION.getCode());
         map.put("msg", ExceptionEnums.ILLEGALARGUMENTEXCEPTION.getMsg());
-        setMapData(map);
+        map.put("data", null);
         log.error("系统错误 {}", e.getMessage());
         return map;
-    }
-
-    private void setMapData(Map map) {
-        map.put("data", null);
     }
 
 }
