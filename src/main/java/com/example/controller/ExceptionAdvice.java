@@ -1,5 +1,6 @@
 package com.example.controller;
 
+import com.example.enums.ExceptionEnums;
 import com.example.exception.PayException;
 import org.omg.CORBA.SystemException;
 import org.slf4j.Logger;
@@ -37,7 +38,7 @@ public class ExceptionAdvice {
     @ExceptionHandler(value = Exception.class)
     public Map errorHandler(Exception e) {
         Map map = new HashMap();
-        map.put("code", -1);
+        map.put("code", ExceptionEnums.EXCEPTION.getCode());
         map.put("msg", e.getMessage());
         map.put("data", null);
         log.error("系统错误 {}", e.getMessage());
@@ -54,7 +55,7 @@ public class ExceptionAdvice {
     @ResponseBody
     public Map handleBusinessException(PayException e) {
         Map map = new HashMap();
-        map.put("code", -2);
+        map.put("code", 0);
         map.put("msg", e.getMessage());
         map.put("data", null);
         log.error("系统错误 {}", e.getMessage());
@@ -71,8 +72,8 @@ public class ExceptionAdvice {
     @ResponseBody
     public Map handleMethodArgumentNotValidException(MethodArgumentNotValidException e) {
         Map map = new HashMap();
-        map.put("code", -3);
-        map.put("msg", e.getMessage());
+        map.put("code", ExceptionEnums.METHODARGUMENTNOTVALIDEXCEPTION.getCode());
+        map.put("msg", ExceptionEnums.METHODARGUMENTNOTVALIDEXCEPTION.getMsg());
         map.put("data", null);
         log.error("系统错误 {}", e.getMessage());
         return map;
@@ -88,8 +89,8 @@ public class ExceptionAdvice {
     @ResponseBody
     public Map NullPointerException(NullPointerException e) {
         Map map = new HashMap();
-        map.put("code", -4);
-        map.put("msg", e.getMessage());
+        map.put("code", ExceptionEnums.NULLPOINTEREXCEPTION.getCode());
+        map.put("msg", ExceptionEnums.NULLPOINTEREXCEPTION.getMsg());
         map.put("data", null);
         log.error("系统错误 {}", e.getMessage());
         return map;
@@ -105,8 +106,8 @@ public class ExceptionAdvice {
     @ResponseBody
     public Map ClassCastException(ClassCastException e) {
         Map map = new HashMap();
-        map.put("code", -5);
-        map.put("msg", e.getMessage());
+        map.put("code", ExceptionEnums.CLASSCASTEXCEPTION.getCode());
+        map.put("msg", ExceptionEnums.CLASSCASTEXCEPTION.getMsg());
         map.put("data", null);
         log.error("系统错误 {}", e.getMessage());
         return map;
@@ -122,8 +123,8 @@ public class ExceptionAdvice {
     @ResponseBody
     public Map ArrayIndexOutOfBoundsException(ArrayIndexOutOfBoundsException e) {
         Map map = new HashMap();
-        map.put("code", -6);
-        map.put("msg", e.getMessage());
+        map.put("code", ExceptionEnums.ARRAYINDEXOUTOFBOUNDSEXCEPTION.getCode());
+        map.put("msg", ExceptionEnums.ARRAYINDEXOUTOFBOUNDSEXCEPTION.getMsg());
         map.put("data", null);
         log.error("系统错误 {}", e.getMessage());
         return map;
@@ -139,8 +140,8 @@ public class ExceptionAdvice {
     @ResponseBody
     public Map FileNotFoundException(FileNotFoundException e) {
         Map map = new HashMap();
-        map.put("code", -7);
-        map.put("msg", e.getMessage());
+        map.put("code", ExceptionEnums.FILENOTFOUNDEXCEPTION.getCode());
+        map.put("msg", ExceptionEnums.FILENOTFOUNDEXCEPTION.getMsg());
         map.put("data", null);
         log.error("系统错误 {}", e.getMessage());
         return map;
@@ -156,8 +157,8 @@ public class ExceptionAdvice {
     @ResponseBody
     public Map EOFException(EOFException e) {
         Map map = new HashMap();
-        map.put("code", -8);
-        map.put("msg", e.getMessage());
+        map.put("code", ExceptionEnums.EOFEXCEPTION.getCode());
+        map.put("msg", ExceptionEnums.EOFEXCEPTION.getMsg());
         map.put("data", null);
         log.error("系统错误 {}", e.getMessage());
         return map;
@@ -173,8 +174,8 @@ public class ExceptionAdvice {
     @ResponseBody
     public Map NumberFormatException(NumberFormatException e) {
         Map map = new HashMap();
-        map.put("code", -9);
-        map.put("msg", e.getMessage());
+        map.put("code", ExceptionEnums.NUMBERFORMATEXCEPTION.getCode());
+        map.put("msg", ExceptionEnums.NUMBERFORMATEXCEPTION.getMsg());
         map.put("data", null);
         log.error("系统错误 {}", e.getMessage());
         return map;
@@ -190,8 +191,8 @@ public class ExceptionAdvice {
     @ResponseBody
     public Map SQLException(SQLException e) {
         Map map = new HashMap();
-        map.put("code", -10);
-        map.put("msg", e.getMessage());
+        map.put("code", ExceptionEnums.SQLEXCEPTION.getCode());
+        map.put("msg", ExceptionEnums.SQLEXCEPTION.getMsg());
         map.put("data", null);
         log.error("系统错误 {}", e.getMessage());
         return map;
@@ -207,8 +208,8 @@ public class ExceptionAdvice {
     @ResponseBody
     public Map IOException(IOException e) {
         Map map = new HashMap();
-        map.put("code", -11);
-        map.put("msg", e.getMessage());
+        map.put("code", ExceptionEnums.IOEXCEPTION.getCode());
+        map.put("msg", ExceptionEnums.IOEXCEPTION.getMsg());
         map.put("data", null);
         log.error("系统错误 {}", e.getMessage());
         return map;
@@ -224,8 +225,8 @@ public class ExceptionAdvice {
     @ResponseBody
     public Map NoSuchMethodException(NoSuchMethodException e) {
         Map map = new HashMap();
-        map.put("code", -12);
-        map.put("msg", e.getMessage());
+        map.put("code", ExceptionEnums.NOSUCHMETHODEXCEPTION.getCode());
+        map.put("msg", ExceptionEnums.NOSUCHMETHODEXCEPTION.getMsg());
         map.put("data", null);
         log.error("系统错误 {}", e.getMessage());
         return map;
@@ -241,8 +242,8 @@ public class ExceptionAdvice {
     @ResponseBody
     public Map SystemException(SystemException e) {
         Map map = new HashMap();
-        map.put("code", -13);
-        map.put("msg", e.getMessage());
+        map.put("code", ExceptionEnums.SYSTEMEXCEPTION.getCode());
+        map.put("msg", ExceptionEnums.SYSTEMEXCEPTION.getMsg());
         map.put("data", null);
         log.error("系统错误 {}", e.getMessage());
         return map;
@@ -258,8 +259,8 @@ public class ExceptionAdvice {
     @ResponseBody
     public Map NegativeArraySizeException(NegativeArraySizeException e) {
         Map map = new HashMap();
-        map.put("code", -14);
-        map.put("msg", e.getMessage());
+        map.put("code", ExceptionEnums.NEGATIVEARRAYSIZEEXCEPTION.getCode());
+        map.put("msg", ExceptionEnums.NEGATIVEARRAYSIZEEXCEPTION.getMsg());
         map.put("data", null);
         log.error("系统错误 {}", e.getMessage());
         return map;
@@ -275,8 +276,8 @@ public class ExceptionAdvice {
     @ResponseBody
     public Map SecurityException(SecurityException e) {
         Map map = new HashMap();
-        map.put("code", -15);
-        map.put("msg", e.getMessage());
+        map.put("code", ExceptionEnums.SECURITYEXCEPTION.getCode());
+        map.put("msg", ExceptionEnums.SECURITYEXCEPTION.getMsg());
         map.put("data", null);
         log.error("系统错误 {}", e.getMessage());
         return map;
@@ -292,8 +293,8 @@ public class ExceptionAdvice {
     @ResponseBody
     public Map UnsupportedOperationException(UnsupportedOperationException e) {
         Map map = new HashMap();
-        map.put("code", -16);
-        map.put("msg", e.getMessage());
+        map.put("code", ExceptionEnums.UNSUPPORTEDOPERATIONEXCEPTION.getCode());
+        map.put("msg", ExceptionEnums.UNSUPPORTEDOPERATIONEXCEPTION.getMsg());
         map.put("data", null);
         log.error("系统错误 {}", e.getMessage());
         return map;
@@ -309,8 +310,8 @@ public class ExceptionAdvice {
     @ResponseBody
     public Map IllegalStateException(IllegalStateException e) {
         Map map = new HashMap();
-        map.put("code", -17);
-        map.put("msg", e.getMessage());
+        map.put("code", ExceptionEnums.ILLEGALSTATEEXCEPTION.getCode());
+        map.put("msg", ExceptionEnums.ILLEGALSTATEEXCEPTION.getMsg());
         map.put("data", null);
         log.error("系统错误 {}", e.getMessage());
         return map;
@@ -326,8 +327,8 @@ public class ExceptionAdvice {
     @ResponseBody
     public Map InvocationTargetException(InvocationTargetException e) {
         Map map = new HashMap();
-        map.put("code", -18);
-        map.put("msg", e.getMessage());
+        map.put("code", ExceptionEnums.INVOCATIONTARGETEXCEPTION.getCode());
+        map.put("msg", ExceptionEnums.INVOCATIONTARGETEXCEPTION.getMsg());
         map.put("data", null);
         log.error("系统错误 {}", e.getMessage());
         return map;
@@ -343,11 +344,15 @@ public class ExceptionAdvice {
     @ResponseBody
     public Map IllegalArgumentException(IllegalArgumentException e) {
         Map map = new HashMap();
-        map.put("code", -19);
-        map.put("msg", e.getMessage());
-        map.put("data", null);
+        map.put("code", ExceptionEnums.ILLEGALARGUMENTEXCEPTION.getCode());
+        map.put("msg", ExceptionEnums.ILLEGALARGUMENTEXCEPTION.getMsg());
+        setMapData(map);
         log.error("系统错误 {}", e.getMessage());
         return map;
+    }
+
+    private void setMapData(Map map) {
+        map.put("data", null);
     }
 
 }
