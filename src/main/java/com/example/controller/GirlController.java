@@ -3,6 +3,7 @@ package com.example.controller;
 import com.example.domain.Girl;
 import com.example.domain.Result;
 import com.example.repository.GirlRepository;
+import com.example.service.GirlService;
 import com.example.utils.ResultUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
@@ -18,6 +19,8 @@ import java.util.List;
 public class GirlController {
     @Autowired
     private GirlRepository girlRepository;
+    @Autowired
+    private GirlService girlService;
 
     //获取列表
     @GetMapping(value = "/girls")
@@ -52,8 +55,8 @@ public class GirlController {
         girlRepository.delete(id);
     }
 
-    @GetMapping(value = "/girls/age")
-    public List<Girl> girlListByAge(@PathVariable("age") Integer age) {
-        return girlRepository.findByAge(age);
+    @GetMapping(value = "/girls/age/{id}")
+    public void girlListByAge(@PathVariable("id") Integer id)throws Exception {
+       girlService.getAge(id);
     }
 }

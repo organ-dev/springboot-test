@@ -5,7 +5,10 @@ package com.example.enums;
  */
 public enum ResultEnum {
     UNKNOW_ERROR(-1,"未知错误"),
-    SUCCESS(0,"SUCCESS")
+    SUCCESS(0,"SUCCESS"),
+    PRIMARY_SCHOOL(100,"小学"),
+    MIDDLE_SCHOOL(101,"初中")
+
     ;
     private Integer code;
     private String  msg;
