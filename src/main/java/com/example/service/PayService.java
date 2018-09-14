@@ -18,18 +18,15 @@ public class PayService {
     @Autowired
     private PayRepository payRepository;
 
-    public Result getPayById(Integer id) throws Exception {
+    public Result getPayById(Integer id) {
         Result result = new Result();
         Pay pay = null;
-        try {
-            pay = payRepository.findOne(id);
-            String ids = pay.getId().toString();
-            result.setCode(ResultEnum.PAY_SUCCESS.getCode());
-            result.setMsg(ResultEnum.PAY_SUCCESS.getMsg());
-            result.setData(pay);
-        } catch (Exception e) {
-            throw new PayException(ResultEnum.PAY_ERROR);
-        }
+        pay = payRepository.findOne(id);
+        //设置错误，查看日志
+        String ids = pay.getId().toString();
+        result.setCode(ResultEnum.PAY_SUCCESS.getCode());
+        result.setMsg(ResultEnum.PAY_SUCCESS.getMsg());
+        result.setData(pay);
         return result;
     }
 }

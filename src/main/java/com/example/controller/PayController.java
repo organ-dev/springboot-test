@@ -1,6 +1,5 @@
 package com.example.controller;
 
-import com.example.domain.Pay;
 import com.example.domain.Result;
 import com.example.service.PayService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,8 +17,8 @@ public class PayController {
     private PayService payService;
 
     @PostMapping(value = "getPayById")
-    public Result getPayById(@RequestParam("id") Integer id) throws Exception {
-        Result result = payService.getPayById(id);
+    public Result getPayById(@RequestParam("id") Integer id){
+        Result result  = result = payService.getPayById(id);
         return result;
     }
 }
