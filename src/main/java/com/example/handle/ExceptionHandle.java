@@ -2,6 +2,7 @@ package com.example.handle;
 
 import com.example.domain.Result;
 import com.example.exception.GirlException;
+import com.example.exception.PayException;
 import com.example.utils.ResultUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,11 +20,15 @@ public class ExceptionHandle {
     @ExceptionHandler(value = Exception.class)
     @ResponseBody
     public Result handle(Exception e) {
+        //可定义多个exception作为判断条件
         if (e instanceof GirlException) {
             GirlException girlException = (GirlException) e;
             return ResultUtil.error(girlException.getCode(), girlException.getMessage());
+        } else if (e instanceof PayException) {
+            PayException payException = (PayException) e;
+            return ResultUtil.error(payException.getCode(), payException.getMessage());
         } else {
-            logger.error("系统异常 {}", e);
+            logger.error("系统异常", e);
             return ResultUtil.error(-1, "未知错误");
         }
 
