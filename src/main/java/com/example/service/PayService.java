@@ -23,7 +23,11 @@ public class PayService {
         Pay pay = null;
         pay = payRepository.findOne(id);
         //设置错误，查看日志
-        String ids = pay.getId().toString();
+        try {
+            String ids = pay.getId().toString();
+        } catch (Exception e) {
+           throw new PayException(ResultEnum.PAY_ERROR);
+    }
         result.setCode(ResultEnum.PAY_SUCCESS.getCode());
         result.setMsg(ResultEnum.PAY_SUCCESS.getMsg());
         result.setData(pay);
