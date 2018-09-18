@@ -24,7 +24,8 @@ public enum ExceptionEnums {
     ILLEGALSTATEEXCEPTION(-16, "请求状态异常"),
     INVOCATIONTARGETEXCEPTION(-17, "反射异常"),
     ILLEGALARGUMENTEXCEPTION(-18, "非法参数异常"),
-    ;
+    PAY_ERROR(-19, "支付系统异常"),
+    TIMEOUTEXCEPTION(-20, "访问超时");
     private Integer code;
     private String msg;
 

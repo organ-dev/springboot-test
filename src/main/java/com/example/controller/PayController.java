@@ -1,5 +1,6 @@
 package com.example.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.example.domain.Result;
 import com.example.service.PayService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,13 @@ public class PayController {
 
     @PostMapping(value = "getPayById")
     public Result getPayById(@RequestParam("id") Integer id){
+        JSONObject json = JSONObject.parseObject("");
+        if(null!=json){
+            String str=json.getString("a");
+        }else{
+
+        }
+
         Result result  = result = payService.getPayById(id);
         return result;
     }

@@ -1,5 +1,6 @@
 package com.example.exception;
 
+import com.example.enums.ExceptionEnums;
 import com.example.enums.ResultEnum;
 
 /**
@@ -10,7 +11,7 @@ import com.example.enums.ResultEnum;
 public class PayException extends RuntimeException {
     private Integer code;
 
-    public PayException(ResultEnum resultEnum) {
+    public PayException(ExceptionEnums resultEnum) {
         super(resultEnum.getMsg());
         this.code = resultEnum.getCode();
     }

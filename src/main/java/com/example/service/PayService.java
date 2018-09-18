@@ -2,6 +2,7 @@ package com.example.service;
 
 import com.example.domain.Pay;
 import com.example.domain.Result;
+import com.example.enums.ExceptionEnums;
 import com.example.enums.ResultEnum;
 import com.example.exception.PayException;
 import com.example.repository.PayRepository;
@@ -20,17 +21,19 @@ public class PayService {
 
     public Result getPayById(Integer id) {
         Result result = new Result();
-        Pay pay = null;
-        pay = payRepository.findOne(id);
+        Pay pay = payRepository.findOne(id);
         //设置错误，查看日志
+
         try {
-            String ids = pay.getId().toString();
+            if(pay.getAmt().equals(12)){
+                String ids = pay.getId().toString();
+            }
+            result.setCode(ResultEnum.PAY_SUCCESS.getCode());
+            result.setMsg(ResultEnum.PAY_SUCCESS.getMsg());
+            result.setData(pay);
         } catch (Exception e) {
-           throw new PayException(ResultEnum.PAY_ERROR);
+           throw new PayException(ExceptionEnums.PAY_ERROR);
     }
-        result.setCode(ResultEnum.PAY_SUCCESS.getCode());
-        result.setMsg(ResultEnum.PAY_SUCCESS.getMsg());
-        result.setData(pay);
         return result;
     }
 }
