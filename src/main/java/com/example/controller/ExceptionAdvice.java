@@ -8,7 +8,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
-import java.awt.*;
 import java.io.EOFException;
 import java.io.FileNotFoundException;
 import java.io.IOException;

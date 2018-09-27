@@ -25,7 +25,7 @@ public class PayService {
         //设置错误，查看日志
 
         try {
-            if(pay.getAmt().equals(12)){
+            if (pay.getAmt().equals(12)) {
                 String ids = pay.getId().toString();
             }
             result.setCode(ResultEnum.PAY_SUCCESS.getCode());
@@ -33,7 +33,7 @@ public class PayService {
             result.setData(pay);
         } catch (Exception e) {
            throw new PayException(ExceptionEnums.PAY_ERROR);
-    }
+        }
         return result;
     }
 }
