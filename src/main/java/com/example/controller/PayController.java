@@ -43,7 +43,7 @@ public class PayController {
         ValidationUtil validationUtil = new ValidationUtil();
         result = validationUtil.ValidationUtil(pay);
         if (StringUtils.isEmpty(result.getCode())) {
-            result = result = payService.addPay(pay);
+            result = payService.addPay(pay);
         }
         return result;
     }
