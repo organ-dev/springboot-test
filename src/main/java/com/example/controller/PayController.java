@@ -5,17 +5,14 @@ import com.example.domain.Pay;
 import com.example.domain.Result;
 import com.example.handle.ValidationUtil;
 import com.example.service.PayService;
-import com.example.service.UserService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.AuditorAware;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.ConstraintViolation;
-import javax.validation.Validation;
-import javax.validation.Validator;
-import javax.validation.ValidatorFactory;
-import java.util.Set;
 
 /**
  * @Auther: ld
@@ -24,7 +21,7 @@ import java.util.Set;
  */
 @RestController
 @RequestMapping(value = "pay")
-public class PayController {
+public class PayController{
     @Autowired
     private PayService payService;
 
@@ -47,4 +44,6 @@ public class PayController {
         }
         return result;
     }
+
+
 }
