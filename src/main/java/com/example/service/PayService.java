@@ -8,6 +8,7 @@ import com.example.exception.PayException;
 import com.example.repository.PayRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver;
 
 /**
  * @Auther: ld
@@ -23,16 +24,28 @@ public class PayService {
         Result result = new Result();
         Pay pay = payRepository.findOne(id);
         //设置错误，查看日志
-
+//        userService.getUserTest();
         try {
-            if (pay.getAmt().equals(12)) {
-                String ids = pay.getId().toString();
-            }
             result.setCode(ResultEnum.PAY_SUCCESS.getCode());
             result.setMsg(ResultEnum.PAY_SUCCESS.getMsg());
             result.setData(pay);
         } catch (Exception e) {
-           throw new PayException(ExceptionEnums.PAY_ERROR);
+            throw new PayException(ExceptionEnums.PAY_ERROR);
+        }
+        return result;
+    }
+
+    public Result addPay(Pay pay) {
+        Result result = new Result();
+        Pay ResultPay = payRepository.saveAndFlush(pay);
+        if (null != ResultPay.getId()) {
+            result.setCode(ResultEnum.PAY_SUCCESS.getCode());
+            result.setMsg(ResultEnum.PAY_SUCCESS.getMsg());
+            result.setData(pay);
+        } else {
+            result.setCode(ResultEnum.PAY_ERROR.getCode());
+            result.setMsg(ResultEnum.PAY_ERROR.getMsg());
+            result.setData(pay);
         }
         return result;
     }
