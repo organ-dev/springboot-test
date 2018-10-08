@@ -23,9 +23,9 @@ public class RandomStringUtil {
      * 创建一个随机字符串，其长度是指定的字符数。
      * 字符将从字符串指定的字符集中选择，不能为空。如果NULL，则使用所有字符集。
      */
-    public String randomString(){
+    public synchronized String randomString(){
         String random = "";
-        random = RandomStringUtils.random(15, "abcdefgABCDEFG123456789");
+        random = RandomStringUtils.random(10, "1234567890");
         return random;
     }
     /**

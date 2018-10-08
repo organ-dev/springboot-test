@@ -11,7 +11,7 @@ public class RandomThread implements Runnable {
     public void run() {
         for (int i = 0; i < 50; i++) {
             RandomStringUtil randomStringUtil=new RandomStringUtil();
-            System.out.println(randomStringUtil.randomAlphabetic());
+            System.out.println(randomStringUtil.randomString());
         }
     }
 
