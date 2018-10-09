@@ -2,10 +2,20 @@ spring:
   profiles:
     active:
   datasource:
-    driver-class-name: com.mysql.jdbc.Driver
+  #    driver-class-name: com.mysql.jdbc.Driver
+  #    url: jdbc:mysql://localhost:3306/dbgril?useUnicode=true&characterEncoding=utf8&useSSL=false
+  #    username: root
+  #    password: 123456
+
     url: jdbc:mysql://localhost:3306/dbgril?useUnicode=true&characterEncoding=utf8&useSSL=false
     username: root
     password: 123456
+    hikari:
+      data-source-properties:
+        cachePrepStmts: true
+        prepStmtCacheSize: 250
+        prepStmtCacheSqlLimit: 2048
+        useServerPrepStmts: true
   jpa:
     hibernate:
       ddl-auto: none
