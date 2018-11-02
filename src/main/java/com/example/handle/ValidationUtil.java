@@ -12,7 +12,7 @@ import java.util.Set;
 /**
  * @Auther: ld
  * @Date: 2018/9/30 16:06
- * @Description:
+ * @Description: 校验
  */
 public class ValidationUtil<T> {
     public Result ValidationUtil(T object) {

@@ -1,5 +1,6 @@
 package com.example.controller;
 
+
 import com.alibaba.fastjson.JSONObject;
 import com.example.domain.Pay;
 import com.example.domain.Result;
@@ -21,7 +22,7 @@ import org.springframework.web.bind.annotation.*;
  */
 @RestController
 @RequestMapping(value = "pay")
-public class PayController{
+public class PayController {
     @Autowired
     private PayService payService;
 
@@ -45,5 +46,9 @@ public class PayController{
         return result;
     }
 
+    @GetMapping("/demo3")
+    public void demo3(@RequestHeader(name = "myHeader") String myHeader) {
+        System.out.println("myHeader=" + myHeader);
 
+    }
 }
