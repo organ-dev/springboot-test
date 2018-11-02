@@ -1,5 +1,10 @@
 package com.example.controller;
 
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.DefaultHttpClient;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +15,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
-import static org.junit.Assert.*;
 
 /**
  * Created by Aidon on 17/7/14.
@@ -29,5 +33,26 @@ public class GirlControllerTest {
                 andExpect(MockMvcResultMatchers.status().isOk());
     }
 
+    @Test
+    public void getGirls() {
+        HttpClient httpClient = new DefaultHttpClient();
+        //HttpPost httpPost = new HttpPost("http://localhost:8080/zgcssca/ssca_api/getQueryReserveOpenCustomerInfo");
+        HttpPost httpPost = new HttpPost("http://localhost:8081/pay/getPayById?id=5");
+//        StringEntity entity1 = new StringEntity(jsonStr, "UTF-8");
+//        entity1.setContentType("application/json");
+//        httpPost.setEntity(entity1);
+        httpPost.setHeader("Content-Type", "application/json; charset=UTF-8");
+
+        try {
+            HttpResponse response = httpClient.execute(httpPost);
+            byte[] contentInBytes = new byte[1024];
+            int statusCode = response.getStatusLine().getStatusCode();
+            response.getEntity().getContent().read(contentInBytes);
+            String res = new String(contentInBytes, "UTF-8");
+            System.out.println("statusCode:" + statusCode + ";content:" + res);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
 }
