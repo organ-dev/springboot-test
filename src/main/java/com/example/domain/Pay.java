@@ -114,4 +114,18 @@ public class Pay {
     public void setConment(String conment) {
         this.conment = conment;
     }
+
+    @Override
+    public String toString() {
+        return "Pay{" +
+                "id=" + id +
+                ", amt=" + amt +
+                ", conment='" + conment + '\'' +
+                ", email='" + email + '\'' +
+                ", createTime=" + createTime +
+                ", createdBy='" + createdBy + '\'' +
+                ", lastModifiedBy='" + lastModifiedBy + '\'' +
+                ", lastModifiedDate=" + lastModifiedDate +
+                '}';
+    }
 }
