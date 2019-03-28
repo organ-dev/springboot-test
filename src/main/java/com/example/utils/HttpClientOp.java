@@ -10,7 +10,7 @@ import java.net.URL;
  * @Date: 2018/10/9 13:49
  * @Description:
  */
-public class HttpClientOp {
+public final class HttpClientOp {
     public static String doGet(String httpurl) {
         HttpURLConnection connection = null;
         InputStream is = null;
@@ -71,7 +71,7 @@ public class HttpClientOp {
         return result;
     }
 
-    public static String doPost(String httpUrl, String param) {
+    public String doPost(String httpUrl, String param) {
 
         HttpURLConnection connection = null;
         InputStream is = null;

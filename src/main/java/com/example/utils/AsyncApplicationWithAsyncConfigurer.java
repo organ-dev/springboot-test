@@ -11,8 +11,8 @@ import org.springframework.scheduling.annotation.EnableAsync;
  * @Date: 2018/9/27 13:55
  * @Description:
  */
-@SpringBootApplication
-@EnableAsync
+//@SpringBootApplication
+////@EnableAsync
 public class AsyncApplicationWithAsyncConfigurer {
     private static final Logger log = LoggerFactory.getLogger(AsyncApplicationWithAsyncConfigurer.class);
 

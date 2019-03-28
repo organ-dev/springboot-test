@@ -17,8 +17,8 @@ import java.util.concurrent.ThreadPoolExecutor;
  * @Date: 2018/9/27 11:26
  * @Description:
  */
-@SpringBootApplication
-@EnableAsync // 启动异步调用
+//@SpringBootApplication
+//@EnableAsync // 启动异步调用
 public class AsyncApplicationWithAnnotation {
     private static final Logger log = LoggerFactory.getLogger(AsyncApplicationWithAnnotation.class);
 
