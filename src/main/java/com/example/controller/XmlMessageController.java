@@ -21,7 +21,7 @@ import java.io.InputStreamReader;
  */
 @RestController
 @RequestMapping(value = "xml")
-public class XmlMessageService {
+class XmlMessageController {
     @RequestMapping(value = "/wx", method = RequestMethod.POST, produces = MediaType.APPLICATION_XML_VALUE)
     @ResponseBody
     public String messageService(HttpServletRequest request) throws IOException {
