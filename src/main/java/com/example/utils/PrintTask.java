@@ -13,7 +13,7 @@ import java.util.Date;
  */
 @Component
 public class PrintTask {
-//@Scheduled(initialDelay = 1000*5,fixedRate = 1000*1)
+@Scheduled(initialDelay = 1000*5,fixedRate = 1000*1)
 public void cron() throws Exception{
 //    Thread.sleep(2000);
     System.out.println("执行测试"+new Date(System.currentTimeMillis()));
