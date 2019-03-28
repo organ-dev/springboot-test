@@ -1,10 +1,13 @@
 package com.example.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.example.domain.Girl;
 import com.example.domain.Result;
 import com.example.repository.GirlRepository;
 import com.example.service.GirlService;
 import com.example.utils.ResultUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -21,10 +24,12 @@ public class GirlController {
     private GirlRepository girlRepository;
     @Autowired
     private GirlService girlService;
+    private static final Logger logger = LoggerFactory.getLogger(GirlController.class);
 
     //获取列表
     @GetMapping(value = "/girls")
     public List<Girl> girlList() {
+
         return girlRepository.findAll();
     }
 
@@ -41,6 +46,7 @@ public class GirlController {
 
     @GetMapping(value = "/girl/{id}")
     public Girl girlFindOne(@PathVariable("id") Integer id) {
+        logger.info("日志：{}", JSONObject.toJSONString(id));
         return girlRepository.findOne(id);
 
     }
