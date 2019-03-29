@@ -1,5 +1,7 @@
 package com.example.controller;
 
+import com.example.domain.Girl;
+import com.example.repository.GirlRepository;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
@@ -15,6 +17,8 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
+import java.util.List;
+
 
 /**
  * Created by Aidon on 17/7/14.
@@ -25,12 +29,16 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 public class GirlControllerTest {
     @Autowired
     private MockMvc mvc;
-
+   @Autowired
+    GirlRepository girlRepository;
     @Test
     public void girlList() throws Exception {
         //get 可以根据情况替换，post，put
-        mvc.perform(MockMvcRequestBuilders.get("/girls")).
-                andExpect(MockMvcResultMatchers.status().isOk());
+//        mvc.perform(MockMvcRequestBuilders.get("/girls")).
+//                andExpect(MockMvcResultMatchers.status().isOk());
+        List<Girl> ls= girlRepository.findAll();
+
+        System.out.println(ls);
     }
 
     @Test
