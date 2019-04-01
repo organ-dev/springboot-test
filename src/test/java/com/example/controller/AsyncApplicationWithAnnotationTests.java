@@ -20,7 +20,7 @@ import java.util.concurrent.Future;
  */
 @RunWith(SpringRunner.class)
 //@SpringBootTest(classes = AsyncApplicationWithAnnotation.class)
-@SpringBootTest(classes = AsyncApplicationWithAsyncConfigurer.class)
+@SpringBootTest
 public class AsyncApplicationWithAnnotationTests {
     @Autowired
     private AsyncDemo asyncDemo;
