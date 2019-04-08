@@ -4,9 +4,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.AsyncResult;
+import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.stereotype.Component;
 
 import java.util.concurrent.Future;
+import java.util.stream.IntStream;
 
 /**
  * @Auther: ld
@@ -22,7 +24,16 @@ public class AsyncDemo {
      */
     @Async
     public void asyncInvokeSimplest() {
-        log.info("asyncSimplest");
+        System.out.println("####sendSms####   2");
+        log.info("dede");
+                    try {
+                        Thread.sleep(1000);
+
+                    } catch (InterruptedException e) {
+                        log.error("123",e,e);
+                    }
+
+        System.out.println("####sendSms####   3");
     }
 
     /**

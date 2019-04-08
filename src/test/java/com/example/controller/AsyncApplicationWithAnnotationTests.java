@@ -8,6 +8,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.concurrent.ExecutionException;
@@ -21,6 +22,7 @@ import java.util.concurrent.Future;
 @RunWith(SpringRunner.class)
 //@SpringBootTest(classes = AsyncApplicationWithAnnotation.class)
 @SpringBootTest
+@EnableAsync
 public class AsyncApplicationWithAnnotationTests {
     @Autowired
     private AsyncDemo asyncDemo;
@@ -29,12 +31,9 @@ public class AsyncApplicationWithAnnotationTests {
 
     @Test
     public void contextLoads() throws InterruptedException, ExecutionException {
-        for (int i = 0; i < 20; i++) {
+            System.out.println("1");
             asyncDemo.asyncInvokeSimplest();
-            asyncDemo.asyncInvokeWithParameter("test");
-            Future<String> future = asyncDemo.asyncInvokeReturnFuture(100);
-            System.out.println(future.get());
-        }
+            System.out.println("4");
     }
 
     @Test

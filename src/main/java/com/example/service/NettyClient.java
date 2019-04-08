@@ -34,11 +34,6 @@ public class NettyClient {
         while (true) {
             channel.writeAndFlush(new Date() + ": hello world!");
             Thread.sleep(2000);
-<<<<<<< HEAD
-            System.out.println("11111");
-=======
-            System.out.println("test");
->>>>>>> dev
         }
     }
 }
