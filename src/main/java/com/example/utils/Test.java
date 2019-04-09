@@ -38,7 +38,7 @@ public class Test {
             cdl.await();
             long spendtime = System.currentTimeMillis() - starttime;
             System.out.println(threadNum + "个线程花费时间:" + spendtime);
-            msg = "更新成功!";
+            msg = "更新成功!!!";
         } catch (InterruptedException e) {
             msg = "更新失败";
         }
