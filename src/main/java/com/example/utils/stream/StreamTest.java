@@ -118,40 +118,42 @@ public class StreamTest {
 		// Stream.of(arr1, arr2, arr3).flatMap(x -> Arrays.stream(x)).forEach(System.out::println);
 		Stream.of(arr1, arr2, arr3).flatMap(Arrays::stream).forEach(System.out::println);
 	}
+
 	Student[] students;
+
 	@Before
-	public void init1(){
+	public void init1() {
 		students = new Student[100];
-		for (int i=0;i<30;i++){
-			Student student = new Student("user",i);
+		for (int i = 0; i < 30; i++) {
+			Student student = new Student("user", i);
 			students[i] = student;
 		}
-		for (int i=30;i<60;i++){
-			Student student = new Student("user"+i,i);
+		for (int i = 30; i < 60; i++) {
+			Student student = new Student("user" + i, i);
 			students[i] = student;
 		}
-		for (int i=60;i<100;i++){
-			Student student = new Student("user"+i,i);
+		for (int i = 60; i < 100; i++) {
+			Student student = new Student("user" + i, i);
 			students[i] = student;
 		}
 	}
+
 	@Test
-	public void testCollect1(){
+	public void testCollect1() {
 		/**
 		 * 生成List
 		 */
 		List<Student> list = Arrays.stream(students).collect(toList());
-		list.forEach((x)-> System.out.println(x));
+		list.forEach((x) -> System.out.println(x));
 		/**
 		 * 生成Set
 		 */
 		Set<Student> set = Arrays.stream(students).collect(toSet());
-		set.forEach((x)-> System.out.println(x));
+		set.forEach((x) -> System.out.println(x));
 		/**
 		 * 如果包含相同的key，则需要提供第三个参数，否则报错
 		 */
-		Map<String,Integer> map = Arrays.stream(students).collect(toMap(Student::getName,Student::getScore,(s,a)->s+a));
-		map.forEach((x,y)-> System.out.println(x+"->"+y));
-		System.out.println();
+		Map<String, Integer> map = Arrays.stream(students).collect(toMap(Student::getName, Student::getScore, (s, a) -> s + a));
+		map.forEach((x, y) -> System.out.println(x + "->" + y));
 	}
 }
