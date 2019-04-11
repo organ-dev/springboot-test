@@ -3,13 +3,11 @@ package com.example.service;
 import com.example.domain.Pay;
 import com.example.domain.PmsResultVo;
 import com.example.repository.PmsRepository;
-import com.example.utils.PmsFlows;
-import com.example.utils.PmsFlowsConstans;
+import com.example.utils.pms.PmsFlows;
+import com.example.utils.pms.PmsFlowsConstans;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 /**
  * @Auther: ld

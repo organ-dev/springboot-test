@@ -66,6 +66,7 @@ public class StreamExercise {
 		String mergedString = strings.stream().filter(string -> !string.isEmpty()).collect(Collectors.joining(", "));
 		System.out.println("合并字符串: " + mergedString);
 	}
+
 	/***
 	 * 统计
 	 */

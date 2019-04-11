@@ -2,11 +2,8 @@ package com.example.service.impl;
 
 import com.example.domain.Pay;
 import com.example.domain.PmsResultVo;
-import com.example.utils.PmsProcessResult;
+import com.example.utils.pms.PmsProcessResult;
 import org.springframework.stereotype.Component;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * @Auther: ld
