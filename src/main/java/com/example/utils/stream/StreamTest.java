@@ -152,5 +152,6 @@ public class StreamTest {
 		 */
 		Map<String,Integer> map = Arrays.stream(students).collect(toMap(Student::getName,Student::getScore,(s,a)->s+a));
 		map.forEach((x,y)-> System.out.println(x+"->"+y));
+		System.out.println();
 	}
 }
