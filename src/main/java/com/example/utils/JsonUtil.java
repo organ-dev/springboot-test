@@ -51,7 +51,7 @@ public class JsonUtil {
 	/***
 	 * json字符串批量转化
 	 */
-	public static List<?>  json2ListObj(String json, Class<?> clazz) {
+	public static List<?> json2ListObj(String json, Class<?> clazz) {
 		List<?> obgList = null;
 		try {
 			obgList = JSON.parseArray(json, clazz);

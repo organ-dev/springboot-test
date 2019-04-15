@@ -1,5 +1,7 @@
 package com.example.utils.stream;
 
+import com.example.domain.Pay;
+import com.example.domain.User;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -155,5 +157,25 @@ public class StreamTest {
 		 */
 		Map<String, Integer> map = Arrays.stream(students).collect(toMap(Student::getName, Student::getScore, (s, a) -> s + a));
 		map.forEach((x, y) -> System.out.println(x + "->" + y));
+	}
+
+	/***
+	 * 封装遍历List
+	 */
+	@Test
+	public void test2() {
+		List<User> ls = new ArrayList<>();
+		for (int i = 0; i < 5; i++) {
+			User u = new User();
+			u.setName("user" + i);
+			u.setId(i);
+			ls.add(u);
+		}
+		ls.stream().map(x -> {
+			User uu = new User();
+			uu.setId(x.getId());
+			uu.setName(x.getName());
+			return uu;
+		}).collect(Collectors.toList()).forEach(o -> System.out.println(o.getName()));
 	}
 }
