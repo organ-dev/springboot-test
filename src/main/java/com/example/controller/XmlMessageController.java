@@ -1,5 +1,6 @@
 package com.example.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.example.domain.BaseEvent;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
@@ -41,10 +42,13 @@ class XmlMessageController {
 
         System.out.println(baseEvent);
 
-        return "";
+        return JSONObject.toJSONString(baseEvent);
     }
+}
+
 /*
 例子：
+http://localhost:8081/xml/wx
 <note>
 <ToUserName>George</ToUserName>
 <FromUserName>John</FromUserName>
@@ -55,4 +59,3 @@ class XmlMessageController {
 </note>
 */
 
-}
