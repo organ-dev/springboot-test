@@ -3,6 +3,7 @@ package com.example.utils;
 import org.apache.commons.lang.time.DateUtils;
 
 import java.text.ParseException;
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -116,6 +117,20 @@ public class DateUtil {
     public  boolean truncatedEquals(final Date date1, final Date date2, final int field){
         Boolean bl=DateUtils.truncatedEquals(date1,date2,field);
         return bl;
+    }
+    /**
+     * @Title: getCurrentDateString
+     * @Description: 得到当前日期字符串:yyyymmdd
+     * @return String:yyyyMMdd
+     * @throws
+     */
+    public static String getCurrentDateString() {
+        Calendar calendar = Calendar.getInstance();
+        int month = calendar.get(Calendar.MONTH) + 1;
+        int date = calendar.get(Calendar.DATE);
+        return "" + calendar.get(Calendar.YEAR)
+                + (month < 10 ? "0" + month : "" + month)
+                + (date < 10 ? "0" + date : "" + date);
     }
 
     public static void main(String[] args) {
