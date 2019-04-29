@@ -9,6 +9,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.Calendar;
+import java.util.Date;
+
 import static org.junit.Assert.*;
 
 /**
@@ -17,23 +20,10 @@ import static org.junit.Assert.*;
  * @Param ${tags}
  * @Description:
  */
-@RunWith(SpringJUnit4ClassRunner.class)
+@RunWith(SpringRunner.class)
 @SpringBootTest(classes = SpringbootApplication.class)
 @AutoConfigureMockMvc
 public class BusinessSeqServiceTest {
-//	@Autowired
-//	BusinessSeqService businessSeqService;
-//	@Test
-//	public void getAggrMerCustNo() {
-//		String str=businessSeqService.getAggrMerCustNo();
-//		System.out.println(str);
-//	}
+	public static final String sMsgSequenceKeyFormat = "hello";
 
-	@Test
-	public void getOrderId() {
-	}
-
-	@Test
-	public void getPayId() {
-	}
 }

@@ -3,6 +3,7 @@ package com.example.controller;
 import com.example.SpringbootApplication;
 import com.example.domain.Girl;
 import com.example.repository.GirlRepository;
+import com.example.utils.seq.BusinessSeqService;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
@@ -31,6 +32,9 @@ public class GirlControllerTest {
 	@Autowired
 	GirlRepository girlRepository;
 
+	@Autowired
+	BusinessSeqService businessSeqService;
+
 	@Test
 	public void girlList() throws Exception {
 		//get 可以根据情况替换，post，put
@@ -38,6 +42,10 @@ public class GirlControllerTest {
 //                andExpect(MockMvcResultMatchers.status().isOk());
 		List<Girl> ls = girlRepository.findAll();
 		System.out.println(ls);
+		String payId = businessSeqService.getPayId();
+		String orderid = businessSeqService.getOrderId();
+		System.out.println(payId);
+		System.out.println(orderid);
 	}
 
 	@Test
