@@ -1,0 +1,8 @@
+导入这个jar包
+
+@Autowired
+BusinessSeqService businessSeqService;
+
+获取唯一id
+String payId = businessSeqService.getPayId();
+String orderid = businessSeqService.getOrderId();
