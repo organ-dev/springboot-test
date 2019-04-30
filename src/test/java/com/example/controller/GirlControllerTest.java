@@ -44,8 +44,12 @@ public class GirlControllerTest {
 		System.out.println(ls);
 		String payId = businessSeqService.getPayId();
 		String orderid = businessSeqService.getOrderId();
+		String userNo=businessSeqService.getUserNo();
+		String aggr=businessSeqService.getAggrMerCustNo();
+		System.out.println(aggr);
 		System.out.println(payId);
 		System.out.println(orderid);
+		System.out.println(userNo);
 	}
 
 	@Test

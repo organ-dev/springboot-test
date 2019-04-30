@@ -27,6 +27,7 @@ public class BusinessSeqService {
 	private static final String MER_NO_PREFIX = "M";
 
 	private static final char PAD_ZERO = '0';
+	private static final String MER_USER_PREFIX = "U";
 
 	private static final long MAX_NO_VALUE = 999999999999L;
 
@@ -37,6 +38,7 @@ public class BusinessSeqService {
 	private static final String ORDER_ID_SEQ = "aggrPay:orderId";
 	private static final String PAY_ID_SEQ = "aggrPay:payId";
 	private static final String MER_NO_SEQ = "aggrPay:aggrMerCustNo";
+	private static final String MER_USER_SEQ = "aggrPay:userNo";
 
 
 	public BusinessSeqService(RedisSequences redisSequences) {
@@ -49,6 +51,7 @@ public class BusinessSeqService {
 		redisSequences.setCycleMaxValue(ORDER_ID_SEQ, MAX_NO_VALUE);
 		redisSequences.setCycleMaxValue(PAY_ID_SEQ, MAX_NO_VALUE);
 		redisSequences.setCycleMaxValue(MER_NO_SEQ, MAX_NO_VALUE);
+		redisSequences.setCycleMaxValue(MER_USER_SEQ, MAX_NO_VALUE);
 
 	}
 
@@ -106,7 +109,7 @@ public class BusinessSeqService {
 	 */
 	public String getPayId() {
 		String orderId = "";
-		Long orderIdL = redisSequences.nextVal(ORDER_ID_SEQ);
+		Long orderIdL = redisSequences.nextVal(PAY_ID_SEQ);
 		if (orderIdL == null) {
 			return orderId;
 		}
@@ -119,5 +122,22 @@ public class BusinessSeqService {
 		orderId = PAY_ID_PREFIX + date.concat(zeroMsgId);
 		// 不足位数，返回空
 		return orderId;
+	}
+
+	public String getUserNo() {
+		String userNo = "";
+		Long userIdL = redisSequences.nextVal(MER_USER_SEQ);
+		if (userIdL == null) {
+			return userNo;
+		}
+		// 不足12位，前面补零
+		String zeroMsgId = StringUtils.leftPad(userIdL.toString(), 11, PAD_ZERO);
+
+		// yyyyMMdd
+		String date = DateUtil.getCurrentDateString();
+
+		userNo = MER_USER_PREFIX + date.concat(zeroMsgId);
+		// 不足位数，返回空
+		return userNo;
 	}
 }
