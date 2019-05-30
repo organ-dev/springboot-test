@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.PostConstruct;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -26,11 +27,18 @@ public class GirlController {
 	@Autowired
 	private GirlService girlService;
 	private static final Logger logger = LoggerFactory.getLogger(GirlController.class);
+	private String str = "";
+
+	@PostConstruct
+	private void init() {
+		Girl girl = girlRepository.findOne(1);
+		str = girl.getName();
+	}
 
 	//获取列表
 	@GetMapping(value = "/girls")
 	public List<Girl> girlList() {
-
+		System.out.println("name====" + str);
 		return girlRepository.findAll();
 	}
 
