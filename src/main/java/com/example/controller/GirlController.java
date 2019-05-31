@@ -5,6 +5,7 @@ import com.example.domain.Girl;
 import com.example.domain.Result;
 import com.example.repository.GirlRepository;
 import com.example.service.GirlService;
+import com.example.utils.DateUtil;
 import com.example.utils.ResultUtil;
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.PostConstruct;
 import javax.validation.Valid;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -28,6 +30,7 @@ public class GirlController {
 	private GirlService girlService;
 	private static final Logger logger = LoggerFactory.getLogger(GirlController.class);
 	private String str = "";
+	private String finalTime = "";
 
 	@PostConstruct
 	private void init() {
@@ -37,8 +40,7 @@ public class GirlController {
 
 	//获取列表
 	@GetMapping(value = "/girls")
-	public List<Girl> girlList() {
-		System.out.println("name====" + str);
+	public List<Girl> girlList(){
 		return girlRepository.findAll();
 	}
 

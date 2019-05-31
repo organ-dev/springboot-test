@@ -1,13 +1,13 @@
 package com.example.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.Cacheable;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.Min;
+import java.util.Date;
 
 /**
  * Created by Aidon on 17/7/8.
@@ -22,7 +22,10 @@ public class Girl {
 	private Integer age;
 
 	private String name;
-
+	@Column(name = "create_date")
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	private Date createDate;
 	public Girl() {
 	}
 
@@ -56,6 +59,14 @@ public class Girl {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public Date getCreateDate() {
+		return createDate;
+	}
+
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
 	}
 
 	@Override

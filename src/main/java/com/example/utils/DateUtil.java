@@ -2,7 +2,9 @@ package com.example.utils;
 
 import org.apache.commons.lang.time.DateUtils;
 
+import java.text.DateFormat;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -132,7 +134,17 @@ public class DateUtil {
                 + (month < 10 ? "0" + month : "" + month)
                 + (date < 10 ? "0" + date : "" + date);
     }
-
+    public static String format(Date date, String format) {
+        String result = "";
+        try {
+            if (date != null) {
+                DateFormat df = new SimpleDateFormat(format);
+                result = df.format(date);
+            }
+        } catch (Exception e) {
+        }
+        return result;
+    }
     public static void main(String[] args) {
         DateUtil dateUtil = new DateUtil();
         String[] parsePatterns = {"yyyy-MM-dd HH:mm:ss"};
