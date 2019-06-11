@@ -12,6 +12,7 @@ public class ReverseString {
 		ReverseString stringTest = new ReverseString();
 		stringTest.reverseString1(s);
 	}
+
 	/*
 	 * string倒序输出
 	 * 利用String类的toCharArray()，再倒序输出数组的方法
@@ -21,7 +22,7 @@ public class ReverseString {
 
 		char[] chr = str.toCharArray();
 
-		for (int i = chr.length-1 ; i >= 0; i--) {
+		for (int i = chr.length - 1; i >= 0; i--) {
 			System.out.print(chr[i]);
 		}
 		System.out.println("\t");
@@ -41,6 +42,7 @@ public class ReverseString {
 			reverseString2(subString1);
 		}
 	}
+
 	/*
 	 * string倒序输出
 	 * 定义成一个StringBuffer类，用StringBuffer类中的reverse()方法直接倒序字符串。

@@ -2,6 +2,7 @@ package com.example.utils.seq;
 
 import com.example.utils.DateUtil;
 import org.apache.commons.lang.StringUtils;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
@@ -14,6 +15,7 @@ import javax.annotation.PostConstruct;
  * @Description: 获取唯一标识，由于注入问题，启动有问题
  */
 @Service
+@Configuration
 public class BusinessSeqService {
 	/**
 	 * 我方系统生成唯一订单流水号前缀

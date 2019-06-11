@@ -14,7 +14,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.List;
@@ -44,8 +43,8 @@ public class GirlControllerTest {
 		System.out.println(ls);
 		String payId = businessSeqService.getPayId();
 		String orderid = businessSeqService.getOrderId();
-		String userNo=businessSeqService.getUserNo();
-		String aggr=businessSeqService.getAggrMerCustNo();
+		String userNo = businessSeqService.getUserNo();
+		String aggr = businessSeqService.getAggrMerCustNo();
 		System.out.println(aggr);
 		System.out.println(payId);
 		System.out.println(orderid);
@@ -53,11 +52,21 @@ public class GirlControllerTest {
 	}
 
 	@Test
+	public void saveGilrs() {
+		for (int i = 18; i < 200; i++) {
+			Girl girl = new Girl();
+			girl.setAge(i);
+			girl.setName("a" + i);
+			girlRepository.saveAndFlush(girl);
+		}
+	}
+
+	@Test
 	public void getGirls() {
 		HttpClient httpClient = new DefaultHttpClient();
 		//HttpPost httpPost = new HttpPost("http://localhost:8080/zgcssca/ssca_api/getQueryReserveOpenCustomerInfo");
 		HttpPost httpPost = new HttpPost("http://localhost:8081/pay/getPayById?id=5");
-//        StringEntity entity1 = new StringEntity(jsonStr, "UTF-8");
+//        StringEntity entity1 = new StringEntity(jsonStr, "UTF-``
 //        entity1.setContentType("application/json");
 //        httpPost.setEntity(entity1);
 		httpPost.setHeader("Content-Type", "application/json; charset=UTF-8");

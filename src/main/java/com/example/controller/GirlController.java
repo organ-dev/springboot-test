@@ -5,9 +5,8 @@ import com.example.domain.Girl;
 import com.example.domain.Result;
 import com.example.repository.GirlRepository;
 import com.example.service.GirlService;
-import com.example.utils.DateUtil;
 import com.example.utils.ResultUtil;
-import org.junit.Test;
+import com.example.utils.seq.BusinessSeqService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +15,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.PostConstruct;
 import javax.validation.Valid;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -28,19 +26,25 @@ public class GirlController {
 	private GirlRepository girlRepository;
 	@Autowired
 	private GirlService girlService;
+	@Autowired
+	BusinessSeqService businessSeqService;
+
 	private static final Logger logger = LoggerFactory.getLogger(GirlController.class);
 	private String str = "";
 	private String finalTime = "";
 
 	@PostConstruct
 	private void init() {
-		Girl girl = girlRepository.findOne(1);
-		str = girl.getName();
+//		Girl girl = girlRepository.findOne(1);
+//		str = girl.getName();
 	}
 
 	//获取列表
 	@GetMapping(value = "/girls")
 	public List<Girl> girlList(){
+		String payId = businessSeqService.getPayId();
+		System.out.println(payId);
+		System.out.println("test999");
 		return girlRepository.findAll();
 	}
 
@@ -50,7 +54,6 @@ public class GirlController {
 		if (bindingResult.hasErrors()) {
 			return ResultUtil.error(1, bindingResult.getFieldError().getDefaultMessage());
 		}
-		girl.setCupSize(girl.getCupSize());
 		girl.setAge(girl.getAge());
 		return ResultUtil.success(girlRepository.save(girl));
 	}
