@@ -41,7 +41,7 @@ public class GirlController {
 
 	//获取列表
 	@GetMapping(value = "/girls")
-	public List<Girl> girlList(){
+	public List<Girl> girlList() {
 		String payId = businessSeqService.getPayId();
 		System.out.println(payId);
 		System.out.println("test999");
@@ -89,5 +89,11 @@ public class GirlController {
 		List<Girl> la = girlRepository.findByAge(ages);
 		System.out.println(la);
 		return la;
+	}
+
+	@PostMapping(value = "/updateGirlByIdAndAge")
+	public Integer updateGirlByIdAndAge(@RequestParam("id") String id) {
+		Integer num = girlRepository.updateGirlByIdAndAge(Integer.parseInt(id));
+		return num;
 	}
 }

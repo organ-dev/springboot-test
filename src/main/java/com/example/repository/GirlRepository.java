@@ -1,12 +1,13 @@
 package com.example.repository;
 
 import com.example.domain.Girl;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.cache.annotation.CacheConfig;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.QueryHints;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.QueryHint;
 import java.util.List;
 
 /**
@@ -14,8 +15,10 @@ import java.util.List;
  */
 @CacheConfig(cacheNames = "girls")
 public interface GirlRepository extends JpaRepository<Girl, Integer> {
-
 	public List<Girl> findByAge(Integer age);
-
+	@Modifying
+	@Transactional
+	@Query("UPDATE Girl set age=age-1 where id=?1 and age>0")
+	public Integer updateGirlByIdAndAge(@Param("id") Integer id);
 
 }
