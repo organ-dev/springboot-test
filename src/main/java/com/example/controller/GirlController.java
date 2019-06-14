@@ -10,10 +10,14 @@ import com.example.utils.seq.BusinessSeqService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.*;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.PostConstruct;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -28,7 +32,8 @@ public class GirlController {
 	private GirlService girlService;
 	@Autowired
 	BusinessSeqService businessSeqService;
-
+	@PersistenceContext
+	private EntityManager em;
 	private static final Logger logger = LoggerFactory.getLogger(GirlController.class);
 	private String str = "";
 	private String finalTime = "";
@@ -82,25 +87,43 @@ public class GirlController {
 
 	//添加
 	@PostMapping(value = "/findByAges")
-	public List<Girl> findByAges(@RequestParam("ages") Integer ages) {
+	public Page<Girl> findByAges(@RequestParam("ages") Integer ages) {
 		System.out.println(ages);
-		List<Girl> ls = girlRepository.findByAge(ages);
-		System.out.println(ls);
-		List<Girl> la = girlRepository.findByAge(ages);
-		System.out.println(la);
-		return la;
+//		Pageable pageable = new PageRequest(0, 10);
+		Girl girl = new Girl();
+		// order by
+		Sort sort = new Sort(Sort.Direction.DESC, "createDate");
+		PageRequest pageRequest = new PageRequest(0, 10, sort);
+		girl.setAge(18);
+		girl.setName("a18");
+		//设置查询条件
+		ExampleMatcher matcher = ExampleMatcher.matching()
+				.withMatcher("age", ExampleMatcher.GenericPropertyMatchers.exact())
+				.withMatcher("name", ExampleMatcher.GenericPropertyMatchers.exact());
+
+		Example<Girl> example = Example.of(girl, matcher);
+		Page<Girl> girls = girlRepository.findAll(example, pageRequest);
+		return girls;
 	}
-	@PostMapping(value = "/updateGirlByIdAndAge")
-	public Integer test(@RequestParam("id") String id) {
-		Integer num = girlRepository.updateGirlByIdAndAge(Integer.parseInt(id));
-		System.out.println("tetete");
-		return num;
-	}
+
 	@PostMapping(value = "/updateGirlByIdAndAge")
 	public Integer updateGirlByIdAndAge(@RequestParam("id") String id) {
 		System.out.println("tetete");
 		Integer num = girlRepository.updateGirlByIdAndAge(Integer.parseInt(id));
 		System.out.println("tetete");
 		return num;
+	}
+
+	@Transactional
+	@PostMapping(value = "/updateAge")
+	public void updateAge(@RequestParam("id") Integer id) {
+		Girl girl = em.find(Girl.class, id);
+		girl.setAge(20);
+		try {
+			em.merge(girl);
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+
 	}
 }
