@@ -90,15 +90,9 @@ public class GirlController {
 		System.out.println(la);
 		return la;
 	}
-	@PostMapping(value = "/updateGirlByIdAndAge")
-	public Integer test(@RequestParam("id") String id) {
-		Integer num = girlRepository.updateGirlByIdAndAge(Integer.parseInt(id));
-		System.out.println("tetete");
-		return num;
-	}
+
 	@PostMapping(value = "/updateGirlByIdAndAge")
 	public Integer updateGirlByIdAndAge(@RequestParam("id") String id) {
-		System.out.println("tetete");
 		Integer num = girlRepository.updateGirlByIdAndAge(Integer.parseInt(id));
 		System.out.println("tetete");
 		return num;
