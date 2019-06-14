@@ -15,10 +15,12 @@ import java.util.List;
  */
 @CacheConfig(cacheNames = "girls")
 public interface GirlRepository extends JpaRepository<Girl, Integer> {
-	public List<Girl> findByAge(Integer age);
+//	@Query(value = "from Girl where age=?1 ", countQuery = "select count(*) from Girl where age=?1", nativeQuery = true)
+	public List<Girl> findByAge(@Param("age") Integer age);
+
 	@Modifying
 	@Transactional
-	@Query("UPDATE Girl set age=age-1 where id=?1 and age>0")
+	@Query(value = "UPDATE Girl set age=age-1 where id=?1 and age>0")
 	public Integer updateGirlByIdAndAge(@Param("id") Integer id);
 
 }
