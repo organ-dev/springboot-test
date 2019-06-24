@@ -7,7 +7,7 @@ import java.text.DecimalFormat;
  * @Auther: ld
  * @Date: 2019/6/24 15:26
  * @Param ${tags}
- * @Description: 计算汇率值
+ * @Description: 计算汇率值,保留4位，不足末位补0
  */
 public class MathTest {
 	public String getValue(String value, String rate) {
