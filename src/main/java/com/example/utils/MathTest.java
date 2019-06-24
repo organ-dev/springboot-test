@@ -7,7 +7,7 @@ import java.text.DecimalFormat;
  * @Auther: ld
  * @Date: 2019/6/24 15:26
  * @Param ${tags}
- * @Description: 计算汇率值,保留4位，不足末位补0
+ * @Description: 计算汇率值, 保留4位，不足末位补0
  */
 public class MathTest {
 	public String getValue(String value, String rate) {
@@ -18,7 +18,7 @@ public class MathTest {
 			BigDecimal result = v.multiply(r).divide(new BigDecimal("100"));
 			BigDecimal one = new BigDecimal("1");
 			val = result.divide(one, 4, BigDecimal.ROUND_HALF_UP).toString();
-			String decimalFormat=new DecimalFormat("0.0000").format(new Double(val));
+			val = new DecimalFormat("0.0000").format(new Double(val));
 		} catch (Exception e) {
 		}
 		return val;
@@ -26,7 +26,7 @@ public class MathTest {
 
 	public static void main(String[] args) {
 		MathTest mathTest = new MathTest();
-		String val = mathTest.getValue("34.434", "3.4");
+		String val = mathTest.getValue("34.49", "3.4");
 		System.out.println(val);
 	}
 }
