@@ -1,3 +1,25 @@
+dubbo:
+  scan:
+    basePackages: com.example.service.impl
+  application:
+    name: springboot-provider
+  registry:
+    address: zookeeper://127.0.0.1:2181
+  protocol:
+    name: dubbo
+    port: 20880
+  provider:
+    timeout: 5000
+
+
+#    registrys:               # 多个应用注册中心时配置项（注意，如果要配置多个注册中心，必须指定的不同的id和名字）
+#    - id: test2
+#      name: test2
+#      protocol: zookeeper   # 必填 服务发现 注册中心支持的协议 包括 dubbo,multicast,zookeeper,redis 默认是zookeeper
+#      address: 127.0.0.1    # 必填 服务发现 注册中心服务器地址，如果地址没有端口缺省为9090，同一集群内的多个地址用逗号分隔，如：ip:port,ip:port，不同集群的注册中心，请配置多个spring.dubbo.registry.标签 1.0.16以上版本
+#      port: 2182            # 可选 服务发现 注册中心缺省端口，当address没有带端口时使用此端口做为缺省值 2.0.0以上版本
+#      client: zkclient      # 可选 服务发现 注册中心支持的客户端， zookeeper 支持客户端包括 curator和zkclient,如果不配置，默认使用zkclient
+
 spring:
   profiles:
     active:
@@ -6,16 +28,44 @@ spring:
     #    url: jdbc:mysql://localhost:3306/dbgril?useUnicode=true&characterEncoding=utf8&useSSL=false
     #    username: root
     #    password: 123456
-    type: com.zaxxer.hikari.HikariDataSource
+#    type: com.zaxxer.hikari.HikariDataSource
     url: jdbc:mysql://localhost:3306/dbgril?useUnicode=true&characterEncoding=utf8&useSSL=false
     username: root
     password: 123456
-    hikari:
-      data-source-properties:
-        cachePrepStmts: true
-        prepStmtCacheSize: 250
-        prepStmtCacheSqlLimit: 2048
-        useServerPrepStmts: true
+    driver-class-name: com.mysql.jdbc.Driver
+      ###################以下为druid增加的配置###########################
+    type: com.alibaba.druid.pool.DruidDataSource
+      # 下面为连接池的补充设置，应用到上面所有数据源中
+      # 初始化大小，最小，最大
+    initialSize: 5
+    minIdle: 5
+    maxActive: 20
+      # 配置获取连接等待超时的时间
+    maxWait: 60000
+      # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+    timeBetweenEvictionRunsMillis: 60000
+      # 配置一个连接在池中最小生存的时间，单位是毫秒
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: SELECT 1 FROM DUAL
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+      # 打开PSCache，并且指定每个连接上PSCache的大小
+    poolPreparedStatements: true
+    maxPoolPreparedStatementPerConnectionSize: 20
+      # 配置监控统计拦截的filters，去掉后监控界面sql无法统计，'wall'用于防火墙
+    filters: stat,wall,log4j
+      # 通过connectProperties属性来打开mergeSql功能；慢SQL记录
+    connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+      # 合并多个DruidDataSource的监控数据
+    useGlobalDataSourceStat: true
+      ###############以上为配置druid添加的配置########################################
+#    hikari:
+#      data-source-properties:
+#        cachePrepStmts: true
+#        prepStmtCacheSize: 250
+#        prepStmtCacheSqlLimit: 2048
+#        useServerPrepStmts: true
   jpa:
     hibernate:
       ddl-auto: update
@@ -56,3 +106,4 @@ spring:
     timeout: 0
 logging:
   com.example: debug
+
