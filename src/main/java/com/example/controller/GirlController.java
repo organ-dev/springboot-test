@@ -1,5 +1,6 @@
 package com.example.controller;
 
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.example.domain.Girl;
 import com.example.domain.Result;
@@ -10,6 +11,7 @@ import com.example.utils.seq.BusinessSeqService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.*;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.BindingResult;
@@ -37,7 +39,9 @@ public class GirlController {
 	private static final Logger logger = LoggerFactory.getLogger(GirlController.class);
 	private String str = "";
 	private String finalTime = "";
-
+	//读取配置文件内容
+	@Value("${server.port}")
+	private String protocolName;
 	@PostConstruct
 	private void init() {
 //		Girl girl = girlRepository.findOne(1);
@@ -48,9 +52,13 @@ public class GirlController {
 	@GetMapping(value = "/girls")
 	public List<Girl> girlList() {
 		String payId = businessSeqService.getPayId();
-		System.out.println(payId);
-		System.out.println("test999");
-		return girlRepository.findAll();
+		List<Girl> girls=girlRepository.findAll();
+		System.out.println(JSONObject.toJSONString(girls));
+		JSONArray array=new JSONArray();
+		array.add(girls);
+		System.out.println(array);
+		System.out.println(protocolName);
+		return girls;
 	}
 
 	//添加
@@ -63,10 +71,13 @@ public class GirlController {
 		return ResultUtil.success(girlRepository.save(girl));
 	}
 
-	@GetMapping(value = "/girl/{id}")
+	@GetMapping(value = "/girls/girlFindOne/{id}")
 	public Girl girlFindOne(@PathVariable("id") Integer id) {
 		logger.info("日志：{}", JSONObject.toJSONString(id));
-		return girlRepository.findOne(id);
+		Girl girl = girlRepository.findOne(id);
+		JSONObject object = JSONObject.parseObject(JSONObject.toJSONString(girl));
+		System.out.println(object);
+		return girl;
 
 	}
 
@@ -108,9 +119,7 @@ public class GirlController {
 
 	@PostMapping(value = "/updateGirlByIdAndAge")
 	public Integer updateGirlByIdAndAge(@RequestParam("id") String id) {
-		System.out.println("tetete");
 		Integer num = girlRepository.updateGirlByIdAndAge(Integer.parseInt(id));
-		System.out.println("tetete");
 		return num;
 	}
 
