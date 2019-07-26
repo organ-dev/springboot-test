@@ -1,8 +1,6 @@
 package com.example.utils;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import com.alibaba.fastjson.JSONObject;
 
 /**
  * @Auther: ld
@@ -10,9 +8,8 @@ import java.util.List;
  * @Description:
  */
 public class TestMain {
-    public static void main(String[] args) {
-       String str="0&amp;amp;amp;amp;nbsp;10&amp;amp;amp;amp;nbsp;0&amp;amp;amp;amp;nbsp;*&amp;amp;amp;amp;nbsp;*&amp;amp;amp;amp;nbsp;?";
-       String a=str.replace("&amp;","").replace("amp;","").replace("nbsp;"," ");
-        System.out.println(a);
-    }
+	public static void main(String[] args) {
+		String str = "<ToUserName><![CDATA[gh_3fcea188bf78]]></ToUserName>";
+		System.out.println(JSONObject.toJSONString(str));
+	}
 }

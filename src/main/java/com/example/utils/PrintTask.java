@@ -1,6 +1,5 @@
 package com.example.utils;
 
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
@@ -15,7 +14,7 @@ import java.util.Date;
  */
 @Component
 public class PrintTask {
-@Scheduled(initialDelay = 10000,fixedRate = 15000)
+//@Scheduled(initialDelay = 10000,fixedRate = 15000)
 public void cron() throws Exception{
 //    Thread.sleep(2000);
     System.out.println("执行测试"+new Date(System.currentTimeMillis()));

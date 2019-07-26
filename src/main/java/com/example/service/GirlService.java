@@ -5,6 +5,7 @@ import com.example.enums.ResultEnum;
 import com.example.exception.GirlException;
 import com.example.repository.GirlRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 /**
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
  * @Date: 2018/9/14 11:16
  * @Description:
  */
+@Component
 @Service
 public class GirlService {
     @Autowired

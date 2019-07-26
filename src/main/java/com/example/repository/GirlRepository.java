@@ -14,6 +14,7 @@ import java.util.List;
  * Created by Aidon on 17/7/9.
  */
 @CacheConfig(cacheNames = "girls")
+@Transactional
 public interface GirlRepository extends JpaRepository<Girl, Integer> {
 //	@Query(value = "from Girl where age=?1 ", countQuery = "select count(*) from Girl where age=?1", nativeQuery = true)
 	public List<Girl> findByAge(@Param("age") Integer age);

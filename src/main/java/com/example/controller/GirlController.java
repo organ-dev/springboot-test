@@ -6,8 +6,10 @@ import com.example.domain.Girl;
 import com.example.domain.Result;
 import com.example.repository.GirlRepository;
 import com.example.service.GirlService;
+import com.example.service.GirlsService;
 import com.example.utils.ResultUtil;
 import com.example.utils.seq.BusinessSeqService;
+import com.example.utils.watchUtil.GetTokenUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +36,8 @@ public class GirlController {
 	private GirlService girlService;
 	@Autowired
 	BusinessSeqService businessSeqService;
+	@Autowired
+	private GirlsService girlsService;
 	@PersistenceContext
 	private EntityManager em;
 	private static final Logger logger = LoggerFactory.getLogger(GirlController.class);
@@ -42,6 +46,7 @@ public class GirlController {
 	//读取配置文件内容
 	@Value("${server.port}")
 	private String protocolName;
+
 	@PostConstruct
 	private void init() {
 //		Girl girl = girlRepository.findOne(1);
@@ -52,9 +57,9 @@ public class GirlController {
 	@GetMapping(value = "/girls")
 	public List<Girl> girlList() {
 		String payId = businessSeqService.getPayId();
-		List<Girl> girls=girlRepository.findAll();
+		List<Girl> girls = girlRepository.findAll();
 		System.out.println(JSONObject.toJSONString(girls));
-		JSONArray array=new JSONArray();
+		JSONArray array = new JSONArray();
 		array.add(girls);
 		System.out.println(array);
 		System.out.println(protocolName);
@@ -69,6 +74,23 @@ public class GirlController {
 		}
 		girl.setAge(girl.getAge());
 		return ResultUtil.success(girlRepository.save(girl));
+	}
+
+	@PostMapping(value = "girl/addGirl")
+	public void addGirl() {
+		Girl girl = new Girl();
+		try {
+			girl.setName("acv");
+			girl.setAge(girl.getAge());
+			girlsService.addGirl(girl);
+			if (0 == 0) {
+				int i = 0;
+				int j = 5 / 0;
+				girlsService.addGirl(girl);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	@GetMapping(value = "/girls/girlFindOne/{id}")
@@ -120,6 +142,11 @@ public class GirlController {
 	@PostMapping(value = "/updateGirlByIdAndAge")
 	public Integer updateGirlByIdAndAge(@RequestParam("id") String id) {
 		Integer num = girlRepository.updateGirlByIdAndAge(Integer.parseInt(id));
+		if (0 == 0) {
+			int i = 0;
+			int j = 5 / 0;
+			System.out.println(num);
+		}
 		return num;
 	}
 
@@ -134,5 +161,11 @@ public class GirlController {
 			System.out.println(e);
 		}
 
+	}
+
+	@PostMapping(value = "/getToken")
+	public void getToken() {
+		GetTokenUtil getTokenUtil = new GetTokenUtil();
+		getTokenUtil.getTocken("");
 	}
 }
