@@ -1,6 +1,7 @@
 package com.example.domain;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.omg.CORBA.OBJ_ADAPTER;
 
 import java.util.Map;
 
@@ -9,53 +10,53 @@ import java.util.Map;
  */
 public class ActivateUserDTO {
     @JsonProperty("card_id")
-    private String cardId;
+    private String card_id;
     @JsonProperty("service_statement")
-    private Map<String,String> serviceStatement;
+    private Map<String,Object> service_statement;
     @JsonProperty("required_form")
-    private Map<String,String> requiredForm;
+    private Map<String,Object> required_form;
     @JsonProperty("optional_form")
-    private Map<String,String> optionalForm;
+    private Map<String,Object> optional_form;
 
-    public String getCardId() {
-        return cardId;
+    public String getCard_id() {
+        return card_id;
     }
 
-    public void setCardId(String cardId) {
-        this.cardId = cardId;
+    public void setCard_id(String card_id) {
+        this.card_id = card_id;
     }
 
-    public Map<String, String> getServiceStatement() {
-        return serviceStatement;
+    public Map<String, Object> getService_statement() {
+        return service_statement;
     }
 
-    public void setServiceStatement(Map<String, String> serviceStatement) {
-        this.serviceStatement = serviceStatement;
+    public void setService_statement(Map<String, Object> service_statement) {
+        this.service_statement = service_statement;
     }
 
-    public Map<String, String> getRequiredForm() {
-        return requiredForm;
+    public Map<String, Object> getRequired_form() {
+        return required_form;
     }
 
-    public void setRequiredForm(Map<String, String> requiredForm) {
-        this.requiredForm = requiredForm;
+    public void setRequired_form(Map<String, Object> required_form) {
+        this.required_form = required_form;
     }
 
-    public Map<String, String> getOptionalForm() {
-        return optionalForm;
+    public Map<String, Object> getOptional_form() {
+        return optional_form;
     }
 
-    public void setOptionalForm(Map<String, String> optionalForm) {
-        this.optionalForm = optionalForm;
+    public void setOptional_form(Map<String, Object> optional_form) {
+        this.optional_form = optional_form;
     }
 
     @Override
     public String toString() {
         return "ActivateUserDTO{" +
-                "cardId='" + cardId + '\'' +
-                ", serviceStatement=" + serviceStatement +
-                ", requiredForm=" + requiredForm +
-                ", optionalForm=" + optionalForm +
+                "card_id='" + card_id + '\'' +
+                ", service_statement=" + service_statement +
+                ", required_form=" + required_form +
+                ", optional_form=" + optional_form +
                 '}';
     }
 }
