@@ -14,7 +14,7 @@ import java.util.Map;
 public class ParaDataTest {
     public static void main(String[] args) {
         ActivateUserDTO dto=new ActivateUserDTO();
-        dto.setCard_id("pbLatjnrwUUdZI641gKdTMJzHGfc");
+        dto.setCardd("pbLatjnrwUUdZI641gKdTMJzHGfc");
         Map<String,Object> m=new HashMap<>();
         m.put("name","name");
         m.put("url","https://www.qq.com");
@@ -28,8 +28,8 @@ public class ParaDataTest {
         ls.add(richFieldList);
         required.put("can_modify","false");
         required.put("rich_field_list",ls);
-        dto.setService_statement(m);
-        dto.setRequired_form(required);
+        dto.setServiceStatement(m);
+        dto.setRequiredForm(required);
         System.out.println(JSONObject.toJSONString(dto));
     }
 }
