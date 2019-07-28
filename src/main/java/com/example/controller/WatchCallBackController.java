@@ -79,7 +79,7 @@ public class WatchCallBackController {
 	 * @date: 13:37 2019/7/26
 	 */
 	public void cardPassCheck(Map<String, String> xmlRequest) {
-		//TODO 获取到会员卡审核返回结果，更新会员卡信息
+		// TODO 获取到会员卡审核返回结果，更新会员卡信息
 		String toUserName = xmlRequest.get("ToUserName");//开发者微信号
 		String fromUserName = xmlRequest.get("FromUserName");//发送方帐号（一个OpenID）
 		String createTime = xmlRequest.get("CreateTime");//消息创建时间 （整型）

@@ -166,6 +166,6 @@ public class GirlController {
 	@PostMapping(value = "/getToken")
 	public void getToken() {
 		GetTokenUtil getTokenUtil = new GetTokenUtil();
-		getTokenUtil.getTocken("");
+		getTokenUtil.getTocken();
 	}
 }

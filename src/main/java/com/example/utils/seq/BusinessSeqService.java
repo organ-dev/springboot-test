@@ -47,15 +47,15 @@ public class BusinessSeqService {
 		this.redisSequences = redisSequences;
 	}
 
-	@PostConstruct
-	public void initialization() {
-
-		redisSequences.setCycleMaxValue(ORDER_ID_SEQ, MAX_NO_VALUE);
-		redisSequences.setCycleMaxValue(PAY_ID_SEQ, MAX_NO_VALUE);
-		redisSequences.setCycleMaxValue(MER_NO_SEQ, MAX_NO_VALUE);
-		redisSequences.setCycleMaxValue(MER_USER_SEQ, MAX_NO_VALUE);
-
-	}
+//	@PostConstruct
+//	public void initialization() {
+//
+//		redisSequences.setCycleMaxValue(ORDER_ID_SEQ, MAX_NO_VALUE);
+//		redisSequences.setCycleMaxValue(PAY_ID_SEQ, MAX_NO_VALUE);
+//		redisSequences.setCycleMaxValue(MER_NO_SEQ, MAX_NO_VALUE);
+//		redisSequences.setCycleMaxValue(MER_USER_SEQ, MAX_NO_VALUE);
+//
+//	}
 
 	/**
 	 * 聚合支付给商户分配的内部唯一编号
